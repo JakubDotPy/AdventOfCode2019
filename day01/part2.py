@@ -12,18 +12,15 @@ INPUT_S = """\
 
 
 def get_fuel(mass):
-    return mass // 3 - 2
+    return max(0, mass // 3 - 2)
 
 
 def get_fuel_recursive(mass):
     total_fuel = 0
-    while True:
-        sub_result = get_fuel(mass)
-        if sub_result > 0:
-            total_fuel += sub_result
-            mass = sub_result
-        else:
-            return total_fuel
+    while sub_result := get_fuel(mass):
+        total_fuel += sub_result
+        mass = sub_result
+    return total_fuel
 
 
 def compute(s: str) -> int:
